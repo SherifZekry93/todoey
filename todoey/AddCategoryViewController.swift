@@ -8,7 +8,7 @@
 
 import UIKit
 protocol sendCategoryBack {
-    func getCategory(category:String);
+    func getItem(newItem:Item);
 }
 class AddCategoryViewController: UIViewController {
 
@@ -28,7 +28,9 @@ class AddCategoryViewController: UIViewController {
     @IBOutlet weak var newItemValue: UITextField!
     
     @IBAction func addCategoryButtonPressed(_ sender: UIButton) {
-        delegate?.getCategory(category: newItemValue.text!);
+        var item = Item();
+        item.title = newItemValue.text!
+        delegate?.getItem(newItem: item);
         self.dismiss(animated: true, completion: nil)
     }
 }
