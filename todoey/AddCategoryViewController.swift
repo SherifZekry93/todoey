@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import CoreData
 protocol sendCategoryBack {
     func getItem(newItem:Item);
 }
 class AddCategoryViewController: UIViewController {
+
 
     var delegate:sendCategoryBack?
     override func viewDidLoad() {
@@ -28,8 +30,10 @@ class AddCategoryViewController: UIViewController {
     @IBOutlet weak var newItemValue: UITextField!
     
     @IBAction func addCategoryButtonPressed(_ sender: UIButton) {
-        var item = Item();
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let item =  Item(context: context);
         item.title = newItemValue.text!
+        item.done = false;
         delegate?.getItem(newItem: item);
         self.dismiss(animated: true, completion: nil)
     }

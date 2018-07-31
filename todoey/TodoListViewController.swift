@@ -13,12 +13,13 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
     
 
     var itemArray = [Item]()
-    let dataFilePath = FileManager.default.urls(for: .documentDirectory,in:.userDomainMask).first?.appendingPathComponent("Items.plist")
     //let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad();
         loadItems();
        
+        let dataFilePath = FileManager.default.urls(for: .documentDirectory,in:.userDomainMask)
+        print("file path \(dataFilePath)")
     }
     //Mark - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,9 +47,10 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
     }
     //Mark - Get Category Back From Next Form
     func getItem(newItem: Item) {
+    //    print("the new item " )
+   //print(newItem);
         itemArray.append(newItem);
         saveItems();
-       
     }
     //MARK - Prepare for segue to add an item
     override func prepare(for segue:UIStoryboardSegue, sender: Any?) {
@@ -60,32 +62,19 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
     }
     //Mark - Model Manipulation Methods
     func saveItems(){
-        let encoder = PropertyListEncoder()
         do
         {
-            let data = try encoder.encode(itemArray);
-            try data.write(to: dataFilePath!);
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            try context.save();
         }
         catch
         {
-            print("The error is \(error)");
+            print("error saving Context \(error)");
         }
          tableView.reloadData();
     }
     func loadItems(){
-       if let data = try? Data(contentsOf: dataFilePath!)
-       {
-        let decoder = PropertyListDecoder();
-        do {
-            itemArray = try decoder.decode([Item].self, from: data)
-        }
-        catch
-        {
-            print("error")
-        }
-        
-       }
-       
+      
         
     }
 }
