@@ -8,9 +8,11 @@
 
 import UIKit
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: UITableViewController,sendCategoryBack {
+    
+    
 
-    let itemArray = ["First Item","Second Item","Third Item"]
+    var itemArray = ["First Item","Second Item","Third Item"]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -24,6 +26,7 @@ class TodoListViewController: UITableViewController {
         cell.textLabel?.text = itemArray[indexPath.row];
         return cell
     }
+   
     //Mark - Tableview Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
@@ -36,6 +39,22 @@ class TodoListViewController: UITableViewController {
         {
              tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             
+        }
+    }
+    //Mark - Add Button Item
+    @IBAction func addButtonItem(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "addToDoCategory", sender: self)
+    }
+    //Mark - Get Category Back From Next Form
+    func getCategory(category: String) {
+        itemArray.append(category);
+        self.tableView.reloadData();
+    }
+    override func prepare(for segue:UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addToDoCategory"
+        {
+            let addCatVC = segue.destination as! AddCategoryViewController;
+            addCatVC.delegate = self;
         }
     }
 }
