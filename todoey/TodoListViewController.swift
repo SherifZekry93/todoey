@@ -13,8 +13,13 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
     
 
     var itemArray = ["First Item","Second Item","Third Item"]
+    let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let items = defaults.array(forKey: "ToDoListArray") as? [String]
+        {
+            itemArray = defaults.array(forKey: "ToDoListArray") as! [String];
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
     //Mark - Tableview Datasource Methods
@@ -48,6 +53,7 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
     //Mark - Get Category Back From Next Form
     func getCategory(category: String) {
         itemArray.append(category);
+        self.defaults.set(self.itemArray, forKey:"ToDoListArray");
         self.tableView.reloadData();
     }
     override func prepare(for segue:UIStoryboardSegue, sender: Any?) {
