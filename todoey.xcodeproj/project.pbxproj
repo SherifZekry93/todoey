@@ -13,7 +13,7 @@
 		7E47C327211043F0001F17FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E47C326211043F0001F17FB /* Assets.xcassets */; };
 		7E47C32A211043F0001F17FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E47C328211043F0001F17FB /* LaunchScreen.storyboard */; };
 		7E47C332211059CD001F17FB /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C331211059CD001F17FB /* AddCategoryViewController.swift */; };
-		7E47C33421107724001F17FB /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C33321107724001F17FB /* Categories.swift */; };
+		7E47C33421107724001F17FB /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E47C33321107724001F17FB /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		7E47C329211043F0001F17FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E47C32B211043F0001F17FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E47C331211059CD001F17FB /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
-		7E47C33321107724001F17FB /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		7E47C33321107724001F17FB /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 				7E47C328211043F0001F17FB /* LaunchScreen.storyboard */,
 				7E47C32B211043F0001F17FB /* Info.plist */,
 				7E47C331211059CD001F17FB /* AddCategoryViewController.swift */,
-				7E47C33321107724001F17FB /* Categories.swift */,
+				7E47C33321107724001F17FB /* Item.swift */,
 			);
 			path = todoey;
 			sourceTree = "<group>";
@@ -142,7 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E47C322211043EE001F17FB /* TodoListViewController.swift in Sources */,
-				7E47C33421107724001F17FB /* Categories.swift in Sources */,
+				7E47C33421107724001F17FB /* Item.swift in Sources */,
 				7E47C320211043EE001F17FB /* AppDelegate.swift in Sources */,
 				7E47C332211059CD001F17FB /* AddCategoryViewController.swift in Sources */,
 			);
