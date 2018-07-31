@@ -47,7 +47,7 @@
             </objects>
             <point key="canvasLocation" x="1572" y="-99.400299850074973"/>
         </scene>
-        <!--Data Source-->
+        <!--Add Category View Controller-->
         <scene sceneID="ioe-YY-Eej">
             <objects>
                 <viewController id="LiR-s4-ZtI" customClass="AddCategoryViewController" customModule="todoey" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,15 +88,6 @@
                                             <action selector="addCategoryButtonPressed:" destination="LiR-s4-ZtI" eventType="touchUpInside" id="okP-dn-DBf"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SwU-8W-E9P">
-                                        <rect key="frame" x="8" y="46" width="342" height="153"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="LiR-s4-ZtI" id="kYl-0e-Wwx"/>
-                                            <outlet property="delegate" destination="LiR-s4-ZtI" id="R3A-4j-gJ2"/>
-                                        </connections>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>

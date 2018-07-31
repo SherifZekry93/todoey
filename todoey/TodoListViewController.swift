@@ -7,17 +7,18 @@
 //
 
 import UIKit
-
+import CoreData
 class TodoListViewController: UITableViewController,sendCategoryBack {
     
     
-
+    
     var itemArray = [Item]()
-    //let defaults = UserDefaults.standard
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
     override func viewDidLoad() {
         super.viewDidLoad();
         loadItems();
-       
+        
         let dataFilePath = FileManager.default.urls(for: .documentDirectory,in:.userDomainMask)
         print("file path \(dataFilePath)")
     }
@@ -32,7 +33,7 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
         cell.accessoryType = item.done ? .checkmark : .none;
         return cell
     }
-   
+    
     //Mark - Tableview Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
@@ -47,8 +48,8 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
     }
     //Mark - Get Category Back From Next Form
     func getItem(newItem: Item) {
-    //    print("the new item " )
-   //print(newItem);
+        //    print("the new item " )
+        //print(newItem);
         itemArray.append(newItem);
         saveItems();
     }
@@ -64,18 +65,25 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
     func saveItems(){
         do
         {
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
             try context.save();
         }
         catch
         {
             print("error saving Context \(error)");
         }
-         tableView.reloadData();
+        tableView.reloadData();
     }
     func loadItems(){
-      
-        
+        let request : NSFetchRequest<Item> = Item.fetchRequest();
+        do
+        {
+            itemArray = try context.fetch(request);
+        }
+        catch
+        {
+          print("error fetching data\(error)")
+        }
     }
 }
 
