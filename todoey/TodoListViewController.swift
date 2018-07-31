@@ -10,19 +10,14 @@ import UIKit
 import CoreData
 class TodoListViewController: UITableViewController,sendCategoryBack {
     
-    
-    
     var itemArray = [Item]()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        loadItems();
-        
-        let dataFilePath = FileManager.default.urls(for: .documentDirectory,in:.userDomainMask)
-        print("file path \(dataFilePath)")
+        loadItems()
     }
-    //Mark - Tableview Datasource Methods
+    //MARK: - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count;
     }
@@ -34,26 +29,25 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
         return cell
     }
     
-    //Mark - Tableview Delegate Methods
+    //MARK: - Tableview Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true);
-        
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done;
         saveItems();
-        tableView.reloadData();
+        
     }
-    //Mark - Add Button Item
+    //MARK: - Add Button Item
     @IBAction func addButtonItem(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "addToDoCategory", sender: self)
     }
-    //Mark - Get Category Back From Next Form
+    //MARK:- Get Category Back From Next Form
     func getItem(newItem: Item) {
         //    print("the new item " )
         //print(newItem);
         itemArray.append(newItem);
         saveItems();
     }
-    //MARK - Prepare for segue to add an item
+    //MARK: - Prepare for segue to add an item
     override func prepare(for segue:UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addToDoCategory"
         {
@@ -61,7 +55,7 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
             addCatVC.delegate = self;
         }
     }
-    //Mark - Model Manipulation Methods
+    //MARK: - Model Manipulation Methods
     func saveItems(){
         do
         {
@@ -84,6 +78,34 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
         {
           print("error fetching data\(error)")
         }
+         tableView.reloadData();
     }
 }
-
+//MARK: Getting data from database
+extension TodoListViewController:UISearchBarDelegate
+{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0
+        {
+            loadItems();
+            resignFirstResponder();
+           // view.layoutIfNeeded()
+        }
+        
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        
+        request.predicate = NSPredicate(format:"title CONTAINS %@",searchBar.text!);
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        do
+        {
+            itemArray = try context.fetch(request);
+        }
+        catch
+        {
+            print("error fetching data\(error)")
+        }
+        tableView.reloadData();
+    }
+}
