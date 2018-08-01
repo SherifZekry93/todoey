@@ -33,6 +33,7 @@ class TodoListViewController: SwipeTableViewController,sendItemBack {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         let item = itemArray[indexPath.row]
         cell.textLabel?.text = item.title;
+        cell.detailTextLabel?.text = item.date
         cell.accessoryType = item.done ? .checkmark : .none;
         return cell
     }
