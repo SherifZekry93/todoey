@@ -21,8 +21,12 @@ class AddItemViewController: UIViewController {
         myDatePicker.datePickerMode = UIDatePickerMode.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy"
-        
+        //Mar: Request User Permission For Notification
+        LocalPushManager.shared.requestAuth();
+        let time = TimeInterval("10")
+        LocalPushManager.shared.sendLocalPush(in: time!)
     }
+    
     //MARK : Color Button Pressed
     @IBAction func colorButtonPressed(_ sender: UIButton) {
         print(sender.tag);
