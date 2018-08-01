@@ -36,7 +36,7 @@ class SwipeTableViewController: UITableViewController,SwipeTableViewCellDelegate
             action, index in
           self.markAsDone(indexPath: indexPath);
         }
-        flag.backgroundColor = UIColor.orange
+        flag.backgroundColor = UIColor.blue
         
         flag.image = UIImage(named: "Flag-Icon")
         return [deleteAction,flag]

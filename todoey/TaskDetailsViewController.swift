@@ -18,6 +18,7 @@ class TaskDetailsViewController: UIViewController {
     @IBOutlet weak var backGroundColor: UILabel!
     @IBOutlet weak var taskDate: UILabel!
     
+    @IBOutlet weak var categoryName: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -45,6 +46,7 @@ class TaskDetailsViewController: UIViewController {
         let catColorID:Int = Int( (item?.parentCategory?.catColor)!)
        
         backGroundColor.backgroundColor = categoryColor[catColorID];
+        categoryName.text = item?.parentCategory?.name;
     }
 
     override func didReceiveMemoryWarning() {
