@@ -29,7 +29,7 @@ class AddCategoryViewController: UIViewController {
     
     @IBAction func buttonColorPressed(_ sender: UIButton)
     {
-        catColor =  sender.tag;
+        catColor =  sender.tag;        
     }
     @IBOutlet weak var textCategoryValue: UITextField!
     

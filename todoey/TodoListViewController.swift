@@ -23,6 +23,7 @@ class TodoListViewController: SwipeTableViewController,sendItemBack {
     override func viewDidLoad() {
         super.viewDidLoad();
         tableView.rowHeight = 80;
+       
     }
     //MARK: - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
