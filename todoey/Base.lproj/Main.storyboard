@@ -295,6 +295,7 @@
                         <viewLayoutGuide key="safeArea" id="0cx-7P-NJg"/>
                     </view>
                     <connections>
+                        <outlet property="myDatePicker" destination="cPX-Nr-4Z4" id="tlY-RC-KqJ"/>
                         <outlet property="newItemValue" destination="m2c-nV-IGe" id="Zm0-ar-jBP"/>
                     </connections>
                 </viewController>

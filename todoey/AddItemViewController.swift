@@ -19,8 +19,12 @@ class AddItemViewController: UIViewController {
     var colorNumber: Int?;
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //MARK: Date Picker display date only
+        myDatePicker.datePickerMode = UIDatePickerMode.date
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        let selectedDate = dateFormatter.string(from: myDatePicker.date)
+        print(selectedDate)
     }
     //MARK : Color Button Pressed
     @IBAction func colorButtonPressed(_ sender: UIButton) {
@@ -36,6 +40,7 @@ class AddItemViewController: UIViewController {
     //Mark : Item TextField Outlet
     @IBOutlet weak var newItemValue: UITextField!
     
+    @IBOutlet weak var myDatePicker: UIDatePicker!
     @IBAction func addCategoryButtonPressed(_ sender: UIButton) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let item =  Item(context: context);
