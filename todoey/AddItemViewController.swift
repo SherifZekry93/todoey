@@ -12,8 +12,6 @@ protocol sendItemBack {
     func getItem(newItem:Item);
 }
 class AddItemViewController: UIViewController {
-
-
     var delegate:sendItemBack?
     var category: Category?;
     var colorNumber: Int?;
@@ -23,8 +21,7 @@ class AddItemViewController: UIViewController {
         myDatePicker.datePickerMode = UIDatePickerMode.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy"
-        let selectedDate = dateFormatter.string(from: myDatePicker.date)
-        print(selectedDate)
+        
     }
     //MARK : Color Button Pressed
     @IBAction func colorButtonPressed(_ sender: UIButton) {
@@ -46,6 +43,7 @@ class AddItemViewController: UIViewController {
         let item =  Item(context: context);
         item.title = newItemValue.text!
         item.done = false;
+        item.date = myDatePicker.date
         item.parentCategory = category;
         delegate?.getItem(newItem: item);
         self.dismiss(animated: true, completion: nil)

@@ -13,6 +13,6 @@
     </entity>
     <elements>
         <element name="Category" positionX="-45" positionY="-9" width="128" height="88"/>
-        <element name="Item" positionX="214" positionY="9" width="128" height="103"/>
+        <element name="Item" positionX="214" positionY="9" width="128" height="105"/>
     </elements>
 </model>
