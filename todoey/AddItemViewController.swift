@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import UserNotifications
+
 protocol sendItemBack {
     func getItem(newItem:Item);
 }
@@ -15,16 +17,13 @@ class AddItemViewController: UIViewController {
     var delegate:sendItemBack?
     var category: Category?;
     var colorNumber: Int?;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //MARK: Date Picker display date only
         myDatePicker.datePickerMode = UIDatePickerMode.date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy"
-        //Mar: Request User Permission For Notification
-        LocalPushManager.shared.requestAuth();
-        let time = TimeInterval("10")
-        LocalPushManager.shared.sendLocalPush(in: time!)
     }
     
     //MARK : Color Button Pressed
@@ -48,8 +47,57 @@ class AddItemViewController: UIViewController {
         item.title = newItemValue.text!
         item.done = false;
         item.date = myDatePicker.date
+        //Mar: Request User Permission For Notification and send it 
+        LocalPushManager.shared.requestAuth();
+//        let time = TimeInterval("10")
+        
+       
+        var componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from:myDatePicker.date)
+
+        LocalPushManager().sendLocalPush(in: componentsFromDate)
+        print(componentsFromDate)
+        ////////////
         item.parentCategory = category;
         delegate?.getItem(newItem: item);
         self.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+
+class LocalPushManager:NSObject
+{
+    static var shared = LocalPushManager();
+    let center = UNUserNotificationCenter.current();
+    
+    
+    
+    func requestAuth()
+    {
+        center.requestAuthorization(options: [.alert]) {
+            (granted, error) in
+            if error == nil
+            {
+                print("permission granted")
+            }
+        }
+        
+    }
+    //setup local push
+    func sendLocalPush(in time: DateComponents){
+        let content = UNMutableNotificationContent()
+        content.title = NSString.localizedUserNotificationString(forKey: "wake up", arguments: nil)
+        content.body = NSString.localizedUserNotificationString(forKey: "Time TO Wakeup", arguments: nil)
+        //Trigger Push Notification
+        let trigger = UNCalendarNotificationTrigger(dateMatching: time, repeats: false)
+        let request = UNNotificationRequest(identifier: "Timer", content: content, trigger: trigger)
+        center.add(request)
+        {
+            (error) in
+            if error != nil
+            {
+                print("error");
+            }
+        }
     }
 }
