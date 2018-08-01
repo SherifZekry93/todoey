@@ -426,9 +426,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3h-H0-Dmo">
-                                        <rect key="frame" x="8" y="132" width="42" height="35"/>
+                                        <rect key="frame" x="8" y="132" width="60" height="35"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="42" id="RmF-ra-oCm"/>
+                                            <constraint firstAttribute="width" constant="60" id="RmF-ra-oCm"/>
                                             <constraint firstAttribute="height" constant="35" id="ofr-ZX-7jt"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -436,7 +436,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9g8-W9-9MI">
-                                        <rect key="frame" x="58" y="132" width="293" height="35"/>
+                                        <rect key="frame" x="76" y="132" width="275" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="yBd-Cm-bDw"/>
                                         </constraints>

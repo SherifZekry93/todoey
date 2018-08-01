@@ -38,6 +38,13 @@ class TaskDetailsViewController: UIViewController {
         {
             itemStatus.text = "Completed";
         }
+        if item?.parentCategory?.catColor == 5
+        {
+            backGroundColor.textColor = UIColor.black;
+        }
+        let catColorID:Int = Int( (item?.parentCategory?.catColor)!)
+       
+        backGroundColor.backgroundColor = categoryColor[catColorID];
     }
 
     override func didReceiveMemoryWarning() {
