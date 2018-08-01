@@ -33,7 +33,7 @@ class AddItemViewController: UIViewController {
         print(sender.tag);
     }
     //Mark : - Back Button Pressed
-  
+    
     
     @IBAction func backButtonPress(_ sender: UIButton)
     {
@@ -46,39 +46,54 @@ class AddItemViewController: UIViewController {
     @IBAction func addCategoryButtonPressed(_ sender: UIButton) {
         if newItemValue.text?.count != 0
         {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let item =  Item(context: context);
-        item.title = newItemValue.text!
-        item.done = false;
-        if datePickerValueChanged && myDatePicker.date.timeIntervalSinceNow.sign == .plus
-        {
-            print("item has value");
-            item.date = dateFormatter.string(from:  myDatePicker.date)
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let item =  Item(context: context);
+            item.title = newItemValue.text!
+            item.done = false;
+            if datePickerValueChanged
+            {
+                
+                if myDatePicker.date.timeIntervalSinceNow.sign == .plus
+                {
+                   item.date = dateFormatter.string(from:  myDatePicker.date)
+                    
+                    LocalPushManager.shared.requestAuth();
+                    let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from:myDatePicker.date)
+                    LocalPushManager().sendLocalPush(in: componentsFromDate)
+                    item.parentCategory = category;
+                    delegate?.getItem(newItem: item);
+                    self.dismiss(animated: true, completion: nil)
+                }
+                else
+                {
+                    let alert = UIAlertController(title: "Error!!", message: "You must enter a valid Date or don't change the date and leave it blank", preferredStyle: UIAlertControllerStyle.alert);
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil);
+                }
+            }
+            else
+            {
+                item.date = "";
+                LocalPushManager.shared.requestAuth();
+                let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from:myDatePicker.date)
+                LocalPushManager().sendLocalPush(in: componentsFromDate)
+                item.parentCategory = category;
+                delegate?.getItem(newItem: item);
+                self.dismiss(animated: true, completion: nil)
+            }
         }
         else
         {
-            print("item has no value")
-            item.date = "";
-        }
-        LocalPushManager.shared.requestAuth();
-        let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from:myDatePicker.date)
-        LocalPushManager().sendLocalPush(in: componentsFromDate)
-        item.parentCategory = category;
-        delegate?.getItem(newItem: item);
-        self.dismiss(animated: true, completion: nil)
-        }
-        else
-        {
-            let alert = UIAlertController(title: "Error", message: "You must enter a valid Task Name", preferredStyle: UIAlertControllerStyle.alert);
+            let alert = UIAlertController(title: "Error!!", message: "You must enter a valid Task Name", preferredStyle: UIAlertControllerStyle.alert);
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-
+            
             self.present(alert, animated: true, completion: nil);
         }
     }
     @objc func datePickerChanged(picker: UIDatePicker) {
         datePickerValueChanged = true;
     }
-
+    
 }
 
 
