@@ -7,34 +7,38 @@
 //
 
 import UIKit
-import CoreData
-protocol sendCategoryBack {
-    func getItem(newItem:Item);
+
+protocol sendCategoriesBack {
+    func getCategory(newCategory:Category);
 }
+
 class AddCategoryViewController: UIViewController {
 
-
-    var delegate:sendCategoryBack?
+    var delegate:sendCategoriesBack?
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
 
-    //Mark : - Back Button Pressed
-  
-    @IBAction func backButtonPress(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
-    //Mark : Item TextField Outlet
-    @IBOutlet weak var newItemValue: UITextField!
+    //MARK: outlets
     
-    @IBAction func addCategoryButtonPressed(_ sender: UIButton) {
+    @IBOutlet weak var textCategoryValue: UITextField!
+    
+    @IBAction func addCategoryButtonPress(_ sender: UIButton) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let item =  Item(context: context);
-        item.title = newItemValue.text!
-        item.done = false;
-        delegate?.getItem(newItem: item);
+        let category =  Category(context: context);
+        category.name = textCategoryValue.text!
+        
+        delegate?.getCategory(newCategory: category)
         self.dismiss(animated: true, completion: nil)
     }
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        self.dismiss(animated: true)
+    }
+    
 }

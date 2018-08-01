@@ -8,14 +8,21 @@
 
 import UIKit
 import CoreData
-class TodoListViewController: UITableViewController,sendCategoryBack {
+class TodoListViewController: UITableViewController,sendItemBack {
     
+    var selectedCategory : Category?
+    {
+        didSet{
+        loadItems()
+        }
+    }
     var itemArray = [Item]()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        loadItems()
+        
     }
     //MARK: - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,7 +58,8 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
     override func prepare(for segue:UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addToDoCategory"
         {
-            let addCatVC = segue.destination as! AddCategoryViewController;
+            let addCatVC = segue.destination as! AddItemViewController;
+            addCatVC.category = selectedCategory;
             addCatVC.delegate = self;
         }
     }
@@ -70,6 +78,8 @@ class TodoListViewController: UITableViewController,sendCategoryBack {
     }
     func loadItems(){
         let request : NSFetchRequest<Item> = Item.fetchRequest();
+        let predicate = NSPredicate(format: "parentCategory.name Matches %@", selectedCategory!.name!)
+        request.predicate = predicate;
         do
         {
             itemArray = try context.fetch(request);
@@ -88,8 +98,9 @@ extension TodoListViewController:UISearchBarDelegate
         if searchBar.text?.count == 0
         {
             loadItems();
-            resignFirstResponder();
-           // view.layoutIfNeeded()
+            DispatchQueue.main.async {
+                self.resignFirstResponder();
+            }
         }
         
     }

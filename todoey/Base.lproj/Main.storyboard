@@ -10,7 +10,103 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Todo List View Controller-->
+        <!--All Categories-->
+        <scene sceneID="Ihp-Eb-1MJ">
+            <objects>
+                <tableViewController id="Inc-iM-Wkr" customClass="AllCategoriesTableViewController" customModule="todoey" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EAo-p6-hdl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="I6a-fj-RTQ">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="I6a-fj-RTQ" id="QvW-AH-1GJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Inc-iM-Wkr" id="kL4-Gh-HcW"/>
+                            <outlet property="delegate" destination="Inc-iM-Wkr" id="XTu-Yb-Ppc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="All Categories" id="57W-61-ex9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="smf-FS-y4g">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="addCategoryButtonPressed:" destination="Inc-iM-Wkr" id="qnw-K6-uHK"/>
+                                <segue destination="OMk-Kt-dRa" kind="showDetail" identifier="addNewCategory" id="K58-UL-XZr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Dgw-pL-GAg" kind="show" identifier="CategoryTasks" id="Szm-Zr-2ty"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cgo-Rd-3ub" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="914" y="571"/>
+        </scene>
+        <!--Add Category View Controller-->
+        <scene sceneID="pDE-fa-Aic">
+            <objects>
+                <viewController id="OMk-Kt-dRa" customClass="AddCategoryViewController" customModule="todoey" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2wZ-v9-PYW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kpg-8I-Vc9">
+                                <rect key="frame" x="16" y="20" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="9tF-Q0-iUu"/>
+                                    <constraint firstAttribute="height" constant="32" id="HaM-mV-xUb"/>
+                                </constraints>
+                                <state key="normal" image="left"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="OMk-Kt-dRa" eventType="touchUpInside" id="NTi-Ja-RWe"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4X2-cE-IHS">
+                                <rect key="frame" x="16" y="215" width="343" height="236"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ag-Ik-apJ">
+                                        <rect key="frame" x="0.0" y="31" width="343" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMn-Qh-Z78">
+                                        <rect key="frame" x="69" y="129" width="129" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Add New Category"/>
+                                        <connections>
+                                            <action selector="addCategoryButtonPress:" destination="OMk-Kt-dRa" eventType="touchUpInside" id="nRW-pZ-zSU"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Kpg-8I-Vc9" firstAttribute="top" secondItem="Xcp-LT-kXd" secondAttribute="top" id="B64-3E-oLT"/>
+                            <constraint firstItem="Kpg-8I-Vc9" firstAttribute="leading" secondItem="Xcp-LT-kXd" secondAttribute="leading" constant="16" id="ePG-Ty-gLv"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xcp-LT-kXd"/>
+                    </view>
+                    <connections>
+                        <outlet property="textCategoryValue" destination="7Ag-Ik-apJ" id="cnD-ML-uZC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="91a-z0-Wdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1639.2" y="802.848575712144"/>
+        </scene>
+        <!--All Tasks-->
         <scene sceneID="4Mq-Bk-yuD">
             <objects>
                 <tableViewController id="Dgw-pL-GAg" customClass="TodoListViewController" customModule="todoey" customModuleProvider="target" sceneMemberID="viewController">
@@ -41,7 +137,7 @@
                             <outlet property="delegate" destination="Dgw-pL-GAg" id="cWk-Ti-BF0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="yGF-bl-Dzh">
+                    <navigationItem key="navigationItem" title="All Tasks" id="yGF-bl-Dzh">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="4hc-fi-pA7">
                             <color key="tintColor" white="0.99973887549999996" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
@@ -55,10 +151,10 @@
             </objects>
             <point key="canvasLocation" x="1572" y="-99.400299850074973"/>
         </scene>
-        <!--Add Category View Controller-->
+        <!--Add Item View Controller-->
         <scene sceneID="ioe-YY-Eej">
             <objects>
-                <viewController id="LiR-s4-ZtI" customClass="AddCategoryViewController" customModule="todoey" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="LiR-s4-ZtI" customClass="AddItemViewController" customModule="todoey" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="96R-Cs-TA0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,12 +226,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Dgw-pL-GAg" kind="relationship" relationship="rootViewController" id="CFO-LR-8vd"/>
+                        <segue destination="Inc-iM-Wkr" kind="relationship" relationship="rootViewController" id="ZN8-Uz-T74"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LPk-zS-wP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632.79999999999995" y="-99.400299850074973"/>
+            <point key="canvasLocation" x="420" y="-175"/>
         </scene>
     </scenes>
     <resources>
