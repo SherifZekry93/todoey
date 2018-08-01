@@ -239,7 +239,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hee-cR-oxO">
-                                <rect key="frame" x="8" y="168" width="359" height="245"/>
+                                <rect key="frame" x="8" y="168" width="359" height="350"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter New Category" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m2c-nV-IGe">
                                         <rect key="frame" x="8" y="8" width="343" height="50"/>
@@ -250,30 +250,41 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="cPX-Nr-4Z4">
+                                        <rect key="frame" x="8" y="66" width="343" height="192"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="192" id="vxf-gu-Hnp"/>
+                                        </constraints>
+                                        <date key="date" timeIntervalSinceReferenceDate="554812077.73536396">
+                                            <!--2018-08-01 10:27:57 +0000-->
+                                        </date>
+                                    </datePicker>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txA-sg-w5k">
-                                        <rect key="frame" x="0.0" y="207" width="359" height="38"/>
+                                        <rect key="frame" x="0.0" y="286" width="359" height="38"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                         <state key="normal" title="Add">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
                                             <action selector="addCategoryButtonPressed:" destination="LiR-s4-ZtI" eventType="touchUpInside" id="okP-dn-DBf"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
+                                    <constraint firstItem="cPX-Nr-4Z4" firstAttribute="top" secondItem="m2c-nV-IGe" secondAttribute="bottom" constant="8" id="01K-sf-naE"/>
                                     <constraint firstItem="m2c-nV-IGe" firstAttribute="leading" secondItem="hee-cR-oxO" secondAttribute="leading" constant="8" id="0XX-C0-ynk"/>
-                                    <constraint firstItem="txA-sg-w5k" firstAttribute="leading" secondItem="hee-cR-oxO" secondAttribute="leading" id="Gf8-Su-JEu"/>
-                                    <constraint firstAttribute="trailing" secondItem="txA-sg-w5k" secondAttribute="trailing" id="KNa-RJ-Ll0"/>
-                                    <constraint firstAttribute="bottom" secondItem="txA-sg-w5k" secondAttribute="bottom" id="j0R-fe-XWm"/>
+                                    <constraint firstAttribute="bottom" secondItem="txA-sg-w5k" secondAttribute="bottom" constant="26" id="4rJ-nd-uRH"/>
+                                    <constraint firstItem="cPX-Nr-4Z4" firstAttribute="leading" secondItem="hee-cR-oxO" secondAttribute="leading" constant="8" id="LGH-05-qhn"/>
+                                    <constraint firstItem="txA-sg-w5k" firstAttribute="leading" secondItem="hee-cR-oxO" secondAttribute="leading" id="dfh-T0-2M5"/>
+                                    <constraint firstAttribute="trailing" secondItem="txA-sg-w5k" secondAttribute="trailing" id="g4T-3V-pTC"/>
                                     <constraint firstItem="m2c-nV-IGe" firstAttribute="top" secondItem="hee-cR-oxO" secondAttribute="top" constant="8" id="jCL-D7-1Sd"/>
+                                    <constraint firstAttribute="trailing" secondItem="cPX-Nr-4Z4" secondAttribute="trailing" constant="8" id="sUj-Py-9fj"/>
                                     <constraint firstAttribute="trailing" secondItem="m2c-nV-IGe" secondAttribute="trailing" constant="8" id="y5Y-fo-pnH"/>
-                                    <constraint firstAttribute="height" constant="245" id="zZN-9X-kxO"/>
+                                    <constraint firstAttribute="height" constant="350" id="zZN-9X-kxO"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.9375" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="hee-cR-oxO" firstAttribute="leading" secondItem="0cx-7P-NJg" secondAttribute="leading" constant="8" id="HKq-hS-wTJ"/>
                             <constraint firstItem="hee-cR-oxO" firstAttribute="top" secondItem="TKw-ux-Qun" secondAttribute="bottom" constant="100" id="RLq-bq-B1A"/>
