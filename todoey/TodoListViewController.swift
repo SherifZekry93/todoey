@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-class TodoListViewController: UITableViewController,sendItemBack {
+class TodoListViewController: SwipeTableViewController,sendItemBack {
     
     var selectedCategory : Category?
     {
@@ -22,14 +22,14 @@ class TodoListViewController: UITableViewController,sendItemBack {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
+        tableView.rowHeight = 80;
     }
     //MARK: - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count;
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItmeCell",for:indexPath);
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         let item = itemArray[indexPath.row]
         cell.textLabel?.text = item.title;
         cell.accessoryType = item.done ? .checkmark : .none;
@@ -64,7 +64,7 @@ class TodoListViewController: UITableViewController,sendItemBack {
         }
     }
     //MARK: - Model Manipulation Methods
-    func saveItems(){
+    func saveItems(reloadData:Bool = true){
         do
         {
             
@@ -74,8 +74,12 @@ class TodoListViewController: UITableViewController,sendItemBack {
         {
             print("error saving Context \(error)");
         }
+        if reloadData
+        {
         tableView.reloadData();
+        }
     }
+    //MARK: load All Items
     func loadItems(){
         let request : NSFetchRequest<Item> = Item.fetchRequest();
         let predicate = NSPredicate(format: "parentCategory.name Matches %@", selectedCategory!.name!)
@@ -89,6 +93,13 @@ class TodoListViewController: UITableViewController,sendItemBack {
           print("error fetching data\(error)")
         }
          tableView.reloadData();
+    }
+    //MARK: Delete an item
+    override func updateModel(indexPath: IndexPath)
+    {
+        self.context.delete(self.itemArray[indexPath.row])
+        self.itemArray.remove(at: indexPath.row);
+        self.saveItems(reloadData: false);
     }
 }
 //MARK: Getting data from database
