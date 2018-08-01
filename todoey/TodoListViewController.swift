@@ -40,10 +40,8 @@ class TodoListViewController: SwipeTableViewController,sendItemBack {
     
     //MARK: - Tableview Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true);
-        itemArray[indexPath.row].done = !itemArray[indexPath.row].done;
-        saveItems();
-        
+       
+            tableView.deselectRow(at: indexPath, animated: true);
     }
     //MARK: - Add Button Item
     @IBAction func addButtonItem(_ sender: UIBarButtonItem) {
@@ -102,6 +100,10 @@ class TodoListViewController: SwipeTableViewController,sendItemBack {
         self.context.delete(self.itemArray[indexPath.row])
         self.itemArray.remove(at: indexPath.row);
         self.saveItems(reloadData: false);
+    }
+    override func markAsDone(indexPath: IndexPath) {
+        itemArray[indexPath.row].setValue(!itemArray[indexPath.row].done, forKey:"done");
+        saveItems();
     }
 }
 //MARK: Getting data from database
