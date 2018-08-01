@@ -34,6 +34,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="All Categories" id="57W-61-ex9">
+                        <barButtonItem key="leftBarButtonItem" title="Setting" id="95i-Oa-1oi">
+                            <connections>
+                                <segue destination="3e1-Qb-69s" kind="showDetail" id="8ua-hQ-W3f"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="smf-FS-y4g">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <connections>
@@ -173,6 +178,28 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91a-z0-Wdf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1639.2" y="802.848575712144"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="9RI-aA-12q">
+            <objects>
+                <viewController id="3e1-Qb-69s" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JN0-qc-u4D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sSZ-KB-tle">
+                                <rect key="frame" x="23" y="19" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="left"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="oqn-y9-HmF"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3RC-Gf-Ygh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="977" y="-108"/>
         </scene>
         <!--All Tasks-->
         <scene sceneID="4Mq-Bk-yuD">

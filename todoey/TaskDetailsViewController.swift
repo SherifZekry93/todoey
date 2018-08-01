@@ -56,5 +56,4 @@ class TaskDetailsViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
 }
