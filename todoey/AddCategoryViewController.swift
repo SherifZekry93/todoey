@@ -16,6 +16,7 @@ class AddCategoryViewController: UIViewController {
     
     var delegate:sendCategoriesBack?
     var catColor:Int = 5;
+    var settingPage: Bool = false;
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
