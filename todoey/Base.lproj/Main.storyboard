@@ -179,10 +179,10 @@
             </objects>
             <point key="canvasLocation" x="1639.2" y="802.848575712144"/>
         </scene>
-        <!--View Controller-->
+        <!--Setting View Controller-->
         <scene sceneID="9RI-aA-12q">
             <objects>
-                <viewController id="3e1-Qb-69s" sceneMemberID="viewController">
+                <viewController id="3e1-Qb-69s" customClass="SettingViewController" customModule="todoey" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JN0-qc-u4D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -191,6 +191,9 @@
                                 <rect key="frame" x="23" y="19" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="left"/>
+                                <connections>
+                                    <action selector="backButtonPress:" destination="3e1-Qb-69s" eventType="touchUpInside" id="EpS-kj-iXV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
