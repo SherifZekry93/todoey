@@ -13,11 +13,11 @@ protocol sendCategoriesBack {
 }
 
 class AddCategoryViewController: UIViewController {
-
+    
     var delegate:sendCategoriesBack?
+    var catColor:Int = 5;
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -27,13 +27,17 @@ class AddCategoryViewController: UIViewController {
     }
     //MARK: outlets
     
+    @IBAction func buttonColorPressed(_ sender: UIButton)
+    {
+        catColor =  sender.tag;
+    }
     @IBOutlet weak var textCategoryValue: UITextField!
     
     @IBAction func addCategoryButtonPress(_ sender: UIButton) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let category =  Category(context: context);
         category.name = textCategoryValue.text!
-        
+        category.catColor = Int16(catColor);
         delegate?.getCategory(newCategory: category)
         self.dismiss(animated: true, completion: nil)
     }

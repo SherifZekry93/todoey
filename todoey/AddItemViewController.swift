@@ -16,15 +16,21 @@ class AddItemViewController: UIViewController {
 
     var delegate:sendItemBack?
     var category: Category?;
+    var colorNumber: Int?;
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    //MARK : Color Button Pressed
+    @IBAction func colorButtonPressed(_ sender: UIButton) {
+        print(sender.tag);
+    }
     //Mark : - Back Button Pressed
   
-    @IBAction func backButtonPress(_ sender: UIButton) {
+    
+    @IBAction func backButtonPress(_ sender: UIButton)
+    {
         self.dismiss(animated: true, completion: nil)
     }
     //Mark : Item TextField Outlet
