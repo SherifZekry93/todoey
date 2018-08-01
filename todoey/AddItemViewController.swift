@@ -17,13 +17,15 @@ class AddItemViewController: UIViewController {
     var delegate:sendItemBack?
     var category: Category?;
     var colorNumber: Int?;
-    
+    var dateFormatter:DateFormatter = DateFormatter();
+    var datePickerValueChanged:Bool = false;
     override func viewDidLoad() {
         super.viewDidLoad()
         //MARK: Date Picker display date only
         myDatePicker.datePickerMode = UIDatePickerMode.date
-        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM yyyy"
+        myDatePicker.addTarget(self, action: #selector(datePickerChanged(picker:)), for: .valueChanged)
+        
     }
     
     //MARK : Color Button Pressed
@@ -42,25 +44,41 @@ class AddItemViewController: UIViewController {
     
     @IBOutlet weak var myDatePicker: UIDatePicker!
     @IBAction func addCategoryButtonPressed(_ sender: UIButton) {
+        if newItemValue.text?.count != 0
+        {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let item =  Item(context: context);
         item.title = newItemValue.text!
         item.done = false;
-        item.date = myDatePicker.date
-        //Mar: Request User Permission For Notification and send it 
+        if datePickerValueChanged && myDatePicker.date.timeIntervalSinceNow.sign == .plus
+        {
+            print("item has value");
+            item.date = dateFormatter.string(from:  myDatePicker.date)
+        }
+        else
+        {
+            print("item has no value")
+            item.date = "";
+        }
         LocalPushManager.shared.requestAuth();
-//        let time = TimeInterval("10")
-        
-       
-        var componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from:myDatePicker.date)
-
+        let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from:myDatePicker.date)
         LocalPushManager().sendLocalPush(in: componentsFromDate)
-        print(componentsFromDate)
-        ////////////
         item.parentCategory = category;
         delegate?.getItem(newItem: item);
         self.dismiss(animated: true, completion: nil)
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Error", message: "You must enter a valid Task Name", preferredStyle: UIAlertControllerStyle.alert);
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+
+            self.present(alert, animated: true, completion: nil);
+        }
     }
+    @objc func datePickerChanged(picker: UIDatePicker) {
+        datePickerValueChanged = true;
+    }
+
 }
 
 
