@@ -17,7 +17,7 @@ class TodoListViewController: SwipeTableViewController,sendItemBack {
         }
     }
     var itemArray = [Item]()
-    
+    var selectedindexPath: Int?;
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
@@ -39,9 +39,10 @@ class TodoListViewController: SwipeTableViewController,sendItemBack {
     }
     
     //MARK: - Tableview Delegate Methods
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-            tableView.deselectRow(at: indexPath, animated: true);
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        selectedindexPath = indexPath.row;
+        performSegue(withIdentifier: "showTaskDetails", sender: self);
     }
     //MARK: - Add Button Item
     @IBAction func addButtonItem(_ sender: UIBarButtonItem) {
@@ -61,6 +62,11 @@ class TodoListViewController: SwipeTableViewController,sendItemBack {
             let addCatVC = segue.destination as! AddItemViewController;
             addCatVC.category = selectedCategory;
             addCatVC.delegate = self;
+        }
+        if segue.identifier == "showTaskDetails"
+        {
+            let showTaskDetailsVC = segue.destination as! TaskDetailsViewController;
+            showTaskDetailsVC.item =  itemArray[selectedindexPath!]
         }
     }
     //MARK: - Model Manipulation Methods
