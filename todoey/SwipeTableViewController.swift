@@ -32,12 +32,13 @@ class SwipeTableViewController: UITableViewController,SwipeTableViewCellDelegate
         }
         // customize the action appearance
         deleteAction.image = UIImage(named: "delete-icon")
-        let flag = SwipeAction(style: .destructive, title: "Flag") {
+        let flag = SwipeAction(style: .destructive, title: "") {
             action, index in
           self.markAsDone(indexPath: indexPath);
         }
         flag.backgroundColor = UIColor.orange
         
+        flag.image = UIImage(named: "Flag-Icon")
         return [deleteAction,flag]
     }
     func markAsDone(indexPath: IndexPath){
@@ -47,7 +48,6 @@ class SwipeTableViewController: UITableViewController,SwipeTableViewCellDelegate
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
         var options = SwipeTableOptions()
         options.expansionStyle = .destructive
-        //options.transitionStyle = .border
         return options
     }
     func updateModel(indexPath: IndexPath)
