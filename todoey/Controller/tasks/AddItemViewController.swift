@@ -74,9 +74,6 @@ class AddItemViewController: UIViewController {
             else
             {
                 item.date = "";
-               // LocalPushManager.shared.requestAuth();
-               // let componentsFromDate = Calendar.current.dateComponents(in: TimeZone.current, from:myDatePicker.date)
-               // LocalPushManager().sendLocalPush(in: componentsFromDate, title: <#String#>, body: <#String#>)
                 item.parentCategory = category;
                 delegate?.getItem(newItem: item);
                 self.dismiss(animated: true, completion: nil)
