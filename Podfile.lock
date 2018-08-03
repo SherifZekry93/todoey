@@ -1,0 +1,16 @@
+PODS:
+  - SwipeCellKit (2.4.3)
+
+DEPENDENCIES:
+  - SwipeCellKit
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SwipeCellKit
+
+SPEC CHECKSUMS:
+  SwipeCellKit: cee9906e6d3a36e22ad1a852fba7f8fa0839d113
+
+PODFILE CHECKSUM: 3bb79664ddc860eab1e369cb1ebf507b23a6b89d
+
+COCOAPODS: 1.5.3
